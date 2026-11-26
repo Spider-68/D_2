@@ -255,7 +255,7 @@ void analyzeGraph(int type, int n, int D[MAX_V][MAX_V], int R[MAX_V][MAX_V]) {
             ecc[i] = has_unreachable ? INF : max_dist;
 
             if (ecc[i] == INF) {
-                printf("Вершина %d (%-8s): e(v) = нескінченність (у зв'язній компоненті = %d)\n", i, name_buf, comp_ecc[i]);
+                diameter = INF;
             }
             else if (diameter != INF && ecc[i] > diameter) {
                 diameter = ecc[i];
@@ -275,7 +275,7 @@ void analyzeGraph(int type, int n, int D[MAX_V][MAX_V], int R[MAX_V][MAX_V]) {
         for (int i = 1; i <= n; i++) {
             getVertexName(i, name_buf, sizeof(name_buf));
             if (ecc[i] == INF) {
-                printf("Вершина %d (%-8s): e(v) = нескінченність (ізольований вузол)\n", i, name_buf);
+                printf("Вершина %d (%-8s): e(v) = нескінченність (у зв'язній компоненті = %d)\n", i, name_buf, comp_ecc[i]);
             }
             else {
                 printf("Вершина %d (%-8s): e(v) = %d\n", i, name_buf, ecc[i]);
